@@ -1,0 +1,1003 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G-DEV Solutions | Software a medida</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#061426;
+      color:#eaf7ff;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none}
+
+    .navbar{
+      width:100%;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      background:rgba(3,12,25,.86);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(0,224,255,.16);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand img{
+      height:48px;
+      width:auto;
+    }
+
+    .brand-text{
+      font-weight:900;
+      font-size:1.25rem;
+      letter-spacing:.5px;
+      color:#fff;
+    }
+
+    .brand-text span{
+      color:#00d9ff;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+    }
+
+    .nav-links a{
+      color:#b8d6e8;
+      font-size:.93rem;
+      font-weight:600;
+      transition:.2s;
+    }
+
+    .nav-links a:hover{color:#00d9ff}
+
+    .btn-demo{
+      background:linear-gradient(135deg,#00e5ff,#0077ff);
+      color:#001225;
+      padding:12px 22px;
+      border-radius:14px;
+      font-weight:800;
+      box-shadow:0 0 22px rgba(0,217,255,.28);
+      transition:.2s;
+    }
+
+    .btn-demo:hover{transform:translateY(-2px)}
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:145px 8% 80px;
+      gap:70px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(0,229,255,.22), transparent 32%),
+        radial-gradient(circle at 10% 25%, rgba(0,119,255,.22), transparent 34%),
+        linear-gradient(135deg,#020b17 0%,#061426 45%,#08243a 100%);
+    }
+
+    .hero-left{max-width:720px}
+
+    .hero-badge{
+      display:inline-block;
+      background:rgba(0,217,255,.12);
+      color:#00d9ff;
+      padding:9px 17px;
+      border:1px solid rgba(0,217,255,.3);
+      border-radius:999px;
+      font-size:.86rem;
+      font-weight:800;
+      margin-bottom:24px;
+    }
+
+    .hero h1{
+      font-size:4.1rem;
+      line-height:1.08;
+      font-weight:900;
+      margin-bottom:26px;
+      letter-spacing:-2px;
+      color:#fff;
+    }
+
+    .hero h1 span{
+      color:#00d9ff;
+      text-shadow:0 0 22px rgba(0,217,255,.35);
+    }
+
+    .hero p{
+      font-size:1.08rem;
+      line-height:1.9;
+      color:#b8d6e8;
+      margin-bottom:34px;
+      max-width:660px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#00e5ff,#0077ff);
+      color:#001225;
+      padding:15px 28px;
+      border-radius:15px;
+      font-weight:900;
+      transition:.2s;
+      box-shadow:0 12px 30px rgba(0,217,255,.28);
+    }
+
+    .btn-primary:hover{transform:translateY(-2px)}
+
+    .btn-secondary{
+      border:2px solid rgba(0,217,255,.35);
+      color:#eaf7ff;
+      padding:15px 28px;
+      border-radius:15px;
+      font-weight:800;
+      transition:.2s;
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-secondary:hover{
+      border-color:#00d9ff;
+      color:#00d9ff;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(0,217,255,.18);
+      border-radius:32px;
+      padding:34px;
+      width:460px;
+      box-shadow:0 24px 60px rgba(0,0,0,.30);
+      backdrop-filter:blur(16px);
+    }
+
+    .hero-logo{
+      text-align:center;
+      margin-bottom:26px;
+    }
+
+    .hero-logo img{
+      max-width:260px;
+      width:100%;
+      height:auto;
+      filter:drop-shadow(0 0 20px rgba(0,217,255,.22));
+    }
+
+    .hero-card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:22px;
+    }
+
+    .hero-card-header h3{color:#fff;font-size:1.1rem}
+
+    .status{
+      background:rgba(0,255,170,.12);
+      color:#3fffc3;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,.07);
+      border-radius:18px;
+      padding:18px;
+      border:1px solid rgba(0,217,255,.14);
+    }
+
+    .mini-card h4{
+      color:#00d9ff;
+      font-size:1.7rem;
+      margin-bottom:4px;
+    }
+
+    .mini-card span{
+      color:#b8d6e8;
+      font-size:.82rem;
+      line-height:1.4;
+    }
+
+    .dashboard{
+      background:linear-gradient(135deg,rgba(0,217,255,.18),rgba(0,119,255,.25));
+      border:1px solid rgba(0,217,255,.18);
+      border-radius:24px;
+      padding:26px;
+    }
+
+    .dashboard h2{
+      font-size:1.4rem;
+      margin-bottom:12px;
+      color:#fff;
+    }
+
+    .dashboard p{
+      color:#cdefff;
+      line-height:1.7;
+      font-size:.95rem;
+      margin:0;
+    }
+
+    section{padding:90px 8%}
+
+    .section-title{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 55px;
+    }
+
+    .section-title span{
+      color:#00d9ff;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.8rem;
+    }
+
+    .section-title h2{
+      font-size:2.6rem;
+      color:#fff;
+      margin:12px 0 14px;
+      line-height:1.15;
+    }
+
+    .section-title p{
+      color:#b8d6e8;
+      line-height:1.8;
+    }
+
+    .solutions-grid,
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
+    }
+
+    .solution-card,
+    .project-card,
+    .process-card{
+      background:rgba(255,255,255,.06);
+      border-radius:26px;
+      padding:32px;
+      border:1px solid rgba(0,217,255,.14);
+      box-shadow:0 18px 45px rgba(0,0,0,.18);
+      transition:.25s;
+    }
+
+    .solution-card:hover,
+    .project-card:hover,
+    .process-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(0,217,255,.36);
+    }
+
+    .icon{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#00e5ff,#0077ff);
+      color:#001225;
+      font-size:1.55rem;
+      margin-bottom:22px;
+    }
+
+    .solution-card h3,
+    .process-card h3{
+      font-size:1.25rem;
+      margin-bottom:14px;
+      color:#fff;
+    }
+
+    .solution-card p,
+    .process-card p{
+      color:#b8d6e8;
+      line-height:1.75;
+      font-size:.95rem;
+    }
+    .solutions-grid-3{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .solution-featured{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .solution-featured::before{
+      content:"";
+      position:absolute;
+      top:-80px;
+      right:-80px;
+      width:170px;
+      height:170px;
+      border-radius:50%;
+      background:rgba(0,217,255,.10);
+    }
+
+    .solution-list{
+      list-style:none;
+      margin-top:22px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .solution-list li{
+      color:#d7f6ff;
+      font-size:.92rem;
+      line-height:1.5;
+      padding-left:26px;
+      position:relative;
+    }
+
+    .solution-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:#00d9ff;
+      font-weight:900;
+    }
+
+    .tech-strip{
+      margin-top:34px;
+      padding:22px 26px;
+      border-radius:22px;
+      border:1px solid rgba(0,217,255,.16);
+      background:rgba(255,255,255,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .tech-strip span{
+      color:#b8d6e8;
+      font-weight:700;
+      margin-right:6px;
+    }
+
+    .tech-strip strong{
+      color:#001225;
+      background:#00d9ff;
+      padding:8px 13px;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:900;
+    }
+
+    .projects{
+      background:#03101f;
+    }
+
+    .project-card{
+      padding:0;
+      overflow:hidden;
+    }
+
+    .project-top{
+      padding:30px;
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      background:linear-gradient(135deg,#00d9ff,#005eff);
+      color:#001225;
+    }
+
+    .project-top.casino{
+      background:linear-gradient(135deg,#00ffc3,#047857);
+    }
+
+    .project-top.wallet{
+      background:linear-gradient(135deg,#00d9ff,#7c3aed);
+      color:#fff;
+    }
+
+    .project-top h3{
+      font-size:1.45rem;
+      margin-bottom:8px;
+    }
+
+    .project-top span{
+      font-size:.9rem;
+      font-weight:700;
+    }
+
+    .project-body{
+      padding:28px;
+    }
+
+    .project-body p{
+      color:#b8d6e8;
+      line-height:1.75;
+      margin-bottom:18px;
+      font-size:.95rem;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag{
+      background:rgba(0,217,255,.12);
+      color:#00d9ff;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:.76rem;
+      font-weight:800;
+    }
+
+    .process-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+    }
+
+    .number{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#00d9ff;
+      color:#001225;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    .cta{
+      background:
+        radial-gradient(circle at top right, rgba(0,229,255,.20), transparent 30%),
+        linear-gradient(135deg,#020b17,#08243a);
+      color:#fff;
+      text-align:center;
+      border-radius:36px;
+      margin:40px 8% 90px;
+      padding:70px 30px;
+      border:1px solid rgba(0,217,255,.18);
+      box-shadow:0 24px 60px rgba(0,0,0,.24);
+    }
+
+    .cta h2{
+      font-size:2.5rem;
+      margin-bottom:18px;
+    }
+
+    .cta p{
+      color:#b8d6e8;
+      max-width:720px;
+      margin:0 auto 30px;
+      line-height:1.8;
+    }
+
+    .cta .btn-primary{
+      display:inline-block;
+    }
+
+    .contact-form{
+      max-width:850px;
+      margin:40px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea{
+      width:100%;
+      padding:16px 18px;
+      border-radius:16px;
+      border:1px solid rgba(0,217,255,.18);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+      outline:none;
+    }
+
+    .contact-form textarea{
+      resize:none;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder{
+      color:#9dc4d8;
+    }
+
+    .contact-form select{
+      color:#9dc4d8;
+    }
+
+    .contact-form button{
+      border:none;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    .success-message{
+      background:rgba(0,255,170,.12);
+      color:#42ffb3;
+      border:1px solid rgba(0,255,170,.3);
+      padding:14px 18px;
+      border-radius:14px;
+      max-width:700px;
+      margin:0 auto 25px;
+      font-weight:600;
+    }
+
+    @media(max-width:700px){
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    footer{
+      background:#020b17;
+      color:#b8d6e8;
+      padding:34px 8%;
+      text-align:center;
+      border-top:1px solid rgba(0,217,255,.14);
+    }
+
+    footer strong{color:#00d9ff}
+
+    @media(max-width:1100px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .solutions-grid,
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+
+      .process-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:700px){
+      .navbar{padding:16px 5%}
+      .nav-links{display:none}
+      .btn-demo{display:none}
+      .brand img{height:40px}
+      .brand-text{font-size:1rem}
+
+      .hero{
+        padding:120px 5% 65px;
+      }
+
+      .hero h1{
+        font-size:2.35rem;
+      }
+
+      .hero-card{
+        width:100%;
+        padding:24px;
+      }
+
+      .mini-grid,
+      .process-grid{
+        grid-template-columns:1fr;
+      }
+
+      section{
+        padding:70px 5%;
+      }
+
+      .section-title h2{
+        font-size:2rem;
+      }
+
+      .cta{
+        margin:20px 5% 70px;
+        padding:50px 22px;
+      }
+
+      .cta h2{
+        font-size:2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="brand">
+      <img src="{% static 'website/img/logo-gdev.png' %}" alt="G-DEV Solutions">
+      <div class="brand-text">G-DEV <span>Solutions</span></div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#soluciones">Soluciones</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <a href="#contacto" class="btn-demo">Solicitar demo</a>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-left">
+      <div class="hero-badge">Desarrollo de software a medida</div>
+
+      <h1>
+        Software para empresas que necesitan
+        <span>control, automatización y crecimiento</span>
+      </h1>
+
+      <p>
+        En <strong>G-DEV Solutions</strong> desarrollamos soluciones digitales para
+        instituciones educativas, empresas operativas y negocios que requieren
+        sistemas personalizados, reportes, integraciones y gestión en línea.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+        <a href="#contacto" class="btn-secondary">Hablar con nosotros</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-logo">
+        <img src="{% static 'website/img/logo-gdev.png' %}" alt="G-DEV Solutions">
+      </div>
+
+      <div class="hero-card-header">
+        <h3>Soluciones activas</h3>
+        <span class="status">En producción</span>
+      </div>
+
+      <div class="mini-grid">
+        <div class="mini-card">
+          <h4>2+</h4>
+          <span>Instituciones educativas usando plataforma</span>
+        </div>
+
+        <div class="mini-card">
+          <h4>3</h4>
+          <span>Líneas de negocio desarrolladas</span>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <h2>Plataformas a medida</h2>
+        <p>
+          Educación, gestión empresarial, casinos, billeteras digitales,
+          reportes, inventarios, tickets e integraciones en línea.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="soluciones">
+      <div class="section-title">
+        <span>Soluciones</span>
+        <h2>Productos digitales desarrollados para operaciones reales</h2>
+        <p>
+          En G-DEV Solutions construimos plataformas funcionales, personalizadas y listas
+          para resolver procesos específicos de empresas e instituciones.
+        </p>
+      </div>
+
+      <div class="solutions-grid solutions-grid-3">
+
+        <div class="solution-card solution-featured">
+          <div class="icon">🏫</div>
+
+          <h3>Plataforma Educativa</h3>
+
+          <p>
+            Sistema integral para instituciones educativas que permite gestionar procesos
+            académicos, administrativos y comunicativos desde una plataforma moderna.
+          </p>
+
+          <ul class="solution-list">
+            <li>Gestión académica y administrativa</li>
+            <li>Boletines, notas y reportes</li>
+            <li>Portal institucional personalizado</li>
+            <li>Usuarios, roles y permisos</li>
+          </ul>
+        </div>
+
+        <div class="solution-card solution-featured">
+          <div class="icon">🏢</div>
+
+          <h3>Gestión Empresarial</h3>
+
+          <p>
+            Software operativo para empresas que necesitan controlar procesos internos,
+            inventarios, soporte técnico, tickets y trazabilidad administrativa.
+          </p>
+
+          <ul class="solution-list">
+            <li>Inventario de repuestos</li>
+            <li>Creación y seguimiento de tickets</li>
+            <li>Gestión de soporte técnico</li>
+            <li>Control operativo y reportes</li>
+          </ul>
+        </div>
+
+        <div class="solution-card solution-featured">
+          <div class="icon">💳</div>
+
+          <h3>Billetera Digital de Apuestas</h3>
+
+          <p>
+            Plataforma para operación de apuestas con gestión de cajeros, movimientos,
+            reportes e integración con servicios externos como Highlight.
+          </p>
+
+          <ul class="solution-list">
+            <li>Integración con Highlight</li>
+            <li>Gestión de cajeros y turnos</li>
+            <li>Control de movimientos</li>
+            <li>Reportes operativos</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="tech-strip">
+        <span>Desarrollado con</span>
+        <strong>Python</strong>
+        <strong>Django</strong>
+        <strong>HTML</strong>
+        <strong>CSS</strong>
+        <strong>JavaScript</strong>
+        <strong>APIs</strong>
+        <strong>Bases de datos</strong>
+      </div>
+  </section>
+
+  <section class="projects" id="proyectos">
+    <div class="section-title">
+      <span>Proyectos reales</span>
+      <h2>Experiencia construyendo sistemas en producción</h2>
+      <p>Soluciones desarrolladas para necesidades reales de operación.</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Sistema educativo institucional</h3>
+          <span>Plataforma para colegios</span>
+        </div>
+
+        <div class="project-body">
+          <p>Gestión académica, administrativa, cartera, boletines, comunicaciones, usuarios, portales institucionales y reportes.</p>
+          <div class="tags">
+            <span class="tag">Académico</span>
+            <span class="tag">Cartera</span>
+            <span class="tag">Boletines</span>
+            <span class="tag">Reportes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top casino">
+          <h3>Sistema de gestión para casinos</h3>
+          <span>Control operativo empresarial</span>
+        </div>
+
+        <div class="project-body">
+          <p>Sistema para liquidación de máquinas de casino, inventario de repuestos, soporte técnico, creación de tickets y gestión en línea.</p>
+          <div class="tags">
+            <span class="tag">Liquidaciones</span>
+            <span class="tag">Inventario</span>
+            <span class="tag">Tickets</span>
+            <span class="tag">Soporte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top wallet">
+          <h3>Billetera de apuestas</h3>
+          <span>Integración y reportes</span>
+        </div>
+
+        <div class="project-body">
+          <p>Billetera para operación de apuestas integrada con Highlight, gestión de cajeros, tasas de apuesta, control operativo y reportes.</p>
+          <div class="tags">
+            <span class="tag">Wallet</span>
+            <span class="tag">Highlight</span>
+            <span class="tag">Cajeros</span>
+            <span class="tag">Reportes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="section-title">
+      <span>Cómo trabajamos</span>
+      <h2>Desarrollo ordenado, claro y enfocado en resultados</h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="number">1</div>
+        <h3>Analizamos el proceso</h3>
+        <p>Entendemos cómo opera tu empresa y qué problema necesita resolver.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="number">2</div>
+        <h3>Diseñamos la solución</h3>
+        <p>Proponemos estructura, módulos, flujos, usuarios y alcance inicial.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="number">3</div>
+        <h3>Desarrollamos el sistema</h3>
+        <p>Construimos una plataforma funcional, segura y adaptada al negocio.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="number">4</div>
+        <h3>Acompañamos la operación</h3>
+        <p>Realizamos ajustes, soporte, mejoras y evolución del sistema.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contacto">
+
+    <h2>¿Necesitas un sistema para tu empresa?</h2>
+
+    <p>
+      Cuéntanos qué necesitas y en G-DEV Solutions te contactaremos
+      para ayudarte a construir una solución tecnológica a medida.
+    </p>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="success-message">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="contact-form">
+
+      {% csrf_token %}
+
+      <div class="form-grid">
+
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre completo"
+          required
+        >
+
+        <input
+          type="email"
+          name="correo"
+          placeholder="Correo electrónico"
+          required
+        >
+
+      </div>
+
+      <div class="form-grid">
+
+        <input
+          type="text"
+          name="telefono"
+          placeholder="Número de teléfono"
+        >
+
+        <select name="servicio" required>
+          <option value="">Seleccione un servicio</option>
+          <option>Plataforma Educativa</option>
+          <option>Gestión Empresarial</option>
+          <option>Billetera Digital</option>
+          <option>Otro</option>
+        </select>
+
+      </div>
+
+      <textarea
+        name="mensaje"
+        rows="5"
+        placeholder="Cuéntanos qué necesitas..."
+        required
+      ></textarea>
+
+      <button type="submit" class="btn-primary">
+        Enviar solicitud
+      </button>
+      <div class="extra-contact">
+
+        <p>o si prefieres una atención inmediata:</p>
+
+        <a
+          href="https://wa.me/573145095028"
+          target="_blank"
+          class="btn-whatsapp"
+        >
+          Escribir por WhatsApp
+        </a>
+
+        <div class="contact-email">
+          gdevsolutions10@gmail.com
+        </div>
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <footer>
+    <p><strong>G-DEV Solutions</strong> © 2026 · Desarrollo de software a medida.</p>
+  </footer>
+
+</body>
+</html>
