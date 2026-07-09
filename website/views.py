@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.core.mail import send_mail
+import resend
+
+resend.api_key = "re_NGWqaVyu_C3TvWq3fSkoL2BHPALy5vCN4"
 
 
 def home(request):
@@ -11,29 +13,35 @@ def home(request):
         servicio = request.POST.get("servicio")
         mensaje = request.POST.get("mensaje")
 
-        asunto = f"Nueva solicitud desde G-DEV Solutions - {servicio}"
+        asunto = f"Nueva solicitud - {servicio}"
 
-        cuerpo = f"""
-Nueva solicitud desde la página web:
+        contenido = f"""
+        Nueva solicitud desde la web:
 
-Nombre: {nombre}
-Correo: {correo}
-Teléfono: {telefono}
-Servicio de interés: {servicio}
+        Nombre: {nombre}
+        Correo: {correo}
+        Teléfono: {telefono}
+        Servicio: {servicio}
 
-Mensaje:
-{mensaje}
-"""
+        Mensaje:
+        {mensaje}
+        """
 
-        send_mail(
-            asunto,
-            cuerpo,
-            "gdevsolutions10@gmail.com",
-            ["gdevsolutions10@gmail.com"],
-            fail_silently=False,
+        resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": "gdevsolutions10@gmail.com",
+            "subject": asunto,
+            "text": contenido,
+        })
+
+        messages.success(
+            request,
+            "Tu solicitud fue enviada correctamente."
         )
 
-        messages.success(request, "Tu solicitud fue enviada correctamente. Pronto te contactaremos.")
-        return redirect("website:home")
+        return redirect("/#contacto")
 
     return render(request, "website/home.html")
+
+def apps(request):
+    return render(request, 'website/apps.html')

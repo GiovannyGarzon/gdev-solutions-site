@@ -25,7 +25,17 @@ SECRET_KEY = 'django-insecure-tbrz-yvnj-nlv3s^0xo90$l)7o8szbbct6kx76p5_7oo97mp3%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "45.55.47.180",
+    "g-dev-solutions.com",
+    "www.g-dev-solutions.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://g-dev-solutions.com",
+    "https://www.g-dev-solutions.com",
+]
+
 
 
 # Application definition
@@ -38,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +142,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "gdevsolutions10@gmail.com"
 EMAIL_HOST_PASSWORD = "sdwe nspp geux uphx"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Apps | G-DEV Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body{
+            margin:0;
+            background:#07131f;
+            color:white;
+            font-family:Arial, sans-serif;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:auto;
+            padding:60px 20px;
+            text-align:center;
+        }
+
+        h1{
+            color:#00d9ff;
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        p{
+            color:#c7d5e0;
+        }
+
+        .apps{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+            margin-top:50px;
+        }
+
+        .card{
+            background:#0c1d2d;
+            border-radius:24px;
+            padding:35px;
+            border:1px solid rgba(0,217,255,.2);
+        }
+
+        .card img{
+            width:120px;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:20px;
+            background:#00d9ff;
+            color:#00111f;
+            padding:14px 24px;
+            border-radius:14px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .btn:hover{
+            opacity:.9;
+        }
+        .back-btn{
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          background: #11d9ff;
+          color: #000;
+          padding: 10px 18px;
+          border-radius: 12px;
+          text-decoration: none;
+          font-weight: bold;
+          box-shadow: 0 0 15px rgba(17,217,255,0.4);
+          transition: 0.3s;
+          z-index: 999;
+        }
+
+        .back-btn:hover{
+          background: #fff;
+          transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="/" class="back-btn">← Volver al inicio</a>
+
+<div class="container">
+
+    <h1>Aplicaciones móviles</h1>
+
+    <p>
+        Descarga la aplicación oficial de tu institución educativa.
+    </p>
+
+    <div class="apps">
+
+        <div class="card">
+            <img src="{% static 'website/img/apps/gingabi-logo.png' %}">
+            <h2>GingaBi</h2>
+
+            <a class="btn"
+               href="{% static 'website/apps/GingaBi-GDEVSOLUTIONS.apk' %}">
+                Descargar App
+            </a>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'website/img/apps/sannicolas-logo.png' %}">
+            <h2>San Nicolás</h2>
+
+            <a class="btn"
+               href="{% static 'website/apps/SanNicolas-GDEVSOLUTIONS.apk' %}">
+                Descargar App
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
